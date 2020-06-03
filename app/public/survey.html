@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Reservation Page</title>
+
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="jumbotron">
+      <h1 class="text-center">
+        <span class="fa fa-thumbs-up"></span> Friend Finder Survey!</h1>
+      <hr>
+      <h2 class="text-center">Answer the questions below and hit the submit button to find your friend</h2>
+      <br>
+      <div class="text-center">
+        <a href="/">
+          <button class="btn btn-lg btn-default"> Back to home page
+            <span class="fa fa-home"></span>
+          </button>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- survey -->
+        <div class="card">
+          <div class="card-header">
+            Select how much you agree or disagree with the following statements from 1 to 5.
+          </div>
+          <div class="card-body">
+            <label>Halloween is the best holiday</label>
+            <select class="custom-select" id="Q1">
+                <option value="1">1(totally disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5(totally agree)</option>
+              </select>
+              <label>Cottage cheese is life</label>
+              <select class="custom-select" id="Q2">
+                <option value="1">1(totally disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5(totally agree)</option>
+              </select>
+              <label>Reality TV is dumb</label>
+              <select class="custom-select" id="Q3">
+                <option value="1">1(totally disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5(totally agree)</option>
+              </select>
+              <label>Exercise is an everyday must</label>
+              <select class="custom-select" id="Q4">
+                <option value="1">1(totally disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5(totally agree)</option>
+              </select>
+              <label>Nature is my church</label>
+              <select class="custom-select" id="Q5">
+                <option value="1">1(totally disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5(totally agree)</option>
+              </select>
+              <label>Just wear the freaking mask!</label>
+              <select class="custom-select" id="Q6">
+                <option value="1">1(totally disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5(totally agree)</option>
+              </select>
+              <label>I bike everywhere I can</label>
+              <select class="custom-select" id="Q7">
+                <option value="1">1(totally disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5(totally agree)</option>
+              </select>
+              <label>I'd rather be duck hunting</label>
+              <select class="custom-select" id="Q8">
+                <option value="1">1(totally disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5(totally agree)</option>
+              </select>
+              <label>We need to listen more and talk less</label>
+              <select class="custom-select" id="Q9">
+                <option value="1">1(totally disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5(totally agree)</option>
+              </select>
+              <label>Firefly is the best show ever</label>
+              <select class="custom-select" id="Q10">
+                <option value="1">1(totally disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5(totally agree)</option>
+              </select>
+              <button type="submit" class="btn btn-primary submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          <a href="/api/survey">API Survey Link</a> 
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    //this script collects the users answers and compares them to our list of available 
+    //friends to find the best match.
+    //var friends = require("../data/friends");
+    $(".submit").on("click", function(event) {
+        event.preventDefault();
+    
+        var userAnswers = {
+            Q1: Number($("#Q1 option:selected").val()),
+            Q2: Number($("#Q2 option:selected").val()),
+            Q3: Number($("#Q3 option:selected").val()),
+            Q4: Number($("#Q4 option:selected").val()),
+            Q5: Number($("#Q5 option:selected").val()),
+            Q6: Number($("#Q6 option:selected").val()),
+            Q7: Number($("#Q7 option:selected").val()),
+            Q8: Number($("#Q8 option:selected").val()),
+            Q9: Number($("#Q9 option:selected").val()),
+            Q10: Number($("#Q10 option:selected").val()),
+        };
+    
+        console.log(userAnswers);
+        var currentURL = window.location.origin;
+        console.log(currentURL)
+
+    });
+        
+    </script>

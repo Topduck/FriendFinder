@@ -1,43 +1,21 @@
-// ==============================================================================
-// DEPENDENCIES
-// Series of npm packages that we will use to give our server useful functionality
-// ==============================================================================
+//this script collects the users answers and compares them to our list of available 
+//friends to find the best match.
+$(".submit").on("click", function(event) {
+    event.preventDefault();
 
-var express = require("express");
-var path = require("path");
+    var userAnswers = {
+        Q1: Number($("#Q1 option:selected").val()),
+        Q2: Number($("#Q2 option:selected").val()),
+        Q3: Number($("#Q3 option:selected").val()),
+        Q4: Number($("#Q4 option:selected").val()),
+        Q5: Number($("#Q5 option:selected").val()),
+        Q6: Number($("#Q6 option:selected").val()),
+        Q7: Number($("#Q7 option:selected").val()),
+        Q8: Number($("#Q8 option:selected").val()),
+        Q9: Number($("#Q9 option:selected").val()),
+        Q10: Number($("#Q10 option:selected").val()),
+    };
 
-// ==============================================================================
-// EXPRESS CONFIGURATION
-// This sets up the basic properties for our express server
-// ==============================================================================
+    console.log(userAnswers);
 
-// Tells node that we are creating an "express" server
-var app = express();
-
-// Sets an initial port. We"ll use this later in our listener
-var PORT = process.env.PORT || 8080;
-
-// Sets up the Express app to handle data parsing
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-
-//API routes connection
-require("apiRoutes")(app);
-// HTML routes
-app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/home.html"));
-  });
-  
-app.get("/survey", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/survey.html"));
-});
-
-// =============================================================================
-// LISTENER
-// The below code effectively "starts" our server
-// =============================================================================
-
-app.listen(PORT, function() {
-  console.log("App listening on PORT: " + PORT);
 });
