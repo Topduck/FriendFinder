@@ -31,6 +31,22 @@
         </a>
       </div>
     </div>
+    <div class="container section">
+      <!--form-->
+        <div class="row col s12">
+          <form class="col s12">
+            <div class="row">
+              <h4>Enter your name</h4>
+              <div class="input-field col s6">
+                <input placeholder="Name" id="name" type="text">
+              </div>
+              <h4>Enter your photo URL</h4>
+              <div class="input-field col s6">
+                <input placeholder="URL" id="photo_URL" type="text">
+              </div>
+            </div>
+          </form>
+        </div>
     <div class="row">
       <div class="col-lg-12">
         <!-- survey -->
@@ -146,7 +162,7 @@
 	      </div>
 	      <div class="modal-body">
 	        <h2 id="matchName"></h2>
-	        <img id="matchImg" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg" alt="">
+	        <img id="matchImg" src="No Pic" alt="">
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -162,24 +178,33 @@
     //var friends = require("../data/friends");
     $(".submit").on("click", function(event) {
         event.preventDefault();
-    
-        var userAnswers = {
-            Q1: Number($("#Q1 option:selected").val()),
-            Q2: Number($("#Q2 option:selected").val()),
-            Q3: Number($("#Q3 option:selected").val()),
-            Q4: Number($("#Q4 option:selected").val()),
-            Q5: Number($("#Q5 option:selected").val()),
-            Q6: Number($("#Q6 option:selected").val()),
-            Q7: Number($("#Q7 option:selected").val()),
-            Q8: Number($("#Q8 option:selected").val()),
-            Q9: Number($("#Q9 option:selected").val()),
-            Q10: Number($("#Q10 option:selected").val()),
-        };
-    
-        console.log(userAnswers);
-        var currentURL = window.location.origin;
-        console.log(currentURL)
-
+        //console.log(`userscore: ${userScores}`);
+        var user = {
+          name: $("#name").val(),
+          photo: $("#photo_URL").val(),
+          scores: [
+            $("#Q1 option:selected").val(),
+            $("#Q2 option:selected").val(),
+            $("#Q3 option:selected").val(),
+            $("#Q4 option:selected").val(),
+            $("#Q5 option:selected").val(),
+            $("#Q6 option:selected").val(),
+            $("#Q7 option:selected").val(),
+            $("#Q8 option:selected").val(),
+            $("#Q9 option:selected").val(),
+            $("#Q10 option:selected").val()]
+        }
+        console.log(user)
+        $.post("/apiroutes",user, function(data){
+          if(data) {
+            console.log(data.friendName);
+            $('#matchName').text(data.friendName);
+            $('#matchImg').attr("src",data.friendPic)
+          }
+          else{
+            console.log("didnt work")
+          }
+        });
     });
         
     </script>
@@ -191,26 +216,26 @@
     //this script collects the users answers and compares them to our list of available 
     //friends to find the best match.
     //var friends = require("../data/friends");
-    $(".submit").on("click", function(event) {
+    /*$(".submit").on("click", function(event) {
         event.preventDefault();
     
-        var userAnswers = {
-            Q1: Number($("#Q1 option:selected").val()),
-            Q2: Number($("#Q2 option:selected").val()),
-            Q3: Number($("#Q3 option:selected").val()),
-            Q4: Number($("#Q4 option:selected").val()),
-            Q5: Number($("#Q5 option:selected").val()),
-            Q6: Number($("#Q6 option:selected").val()),
-            Q7: Number($("#Q7 option:selected").val()),
-            Q8: Number($("#Q8 option:selected").val()),
-            Q9: Number($("#Q9 option:selected").val()),
-            Q10: Number($("#Q10 option:selected").val()),
-        };
+        var userScores = [
+            Number($("#Q1 option:selected").val()),
+            Number($("#Q2 option:selected").val()),
+            Number($("#Q3 option:selected").val()),
+            Number($("#Q4 option:selected").val()),
+            Number($("#Q5 option:selected").val()),
+            Number($("#Q6 option:selected").val()),
+            Number($("#Q7 option:selected").val()),
+            Number($("#Q8 option:selected").val()),
+            Number($("#Q9 option:selected").val()),
+            Number($("#Q10 option:selected").val(),]
+        
     
-        console.log(userAnswers);
+        console.log(userScores);
         var currentURL = window.location.origin;
         console.log(currentURL)
-
-    });
+S
+    }); */
         
     </script>

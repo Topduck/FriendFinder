@@ -1,5 +1,6 @@
 // loading data from friends db js.
-var userData = require("../data/friends");
+var friends = require("../data/friends");
+var fs = require('fs');
 
 //Routing
 module.exports = function(app) {
@@ -9,72 +10,35 @@ module.exports = function(app) {
     // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table)
     // ---------------------------------------------------------------------------
   
-    app.get("/api/friendFinder", function(req, res) {
-      res.json(friendFinder);
-    });
+    app.get("/apiroutes", function(req, res) {
+        res.json(friends);
+    },
 
-    var comparUserTotalScore = 0;
-    var friendScores = []
-
-    app.post("/api/friendFinder", function(req, res) {
+    app.post("/apiroutes", function(req, res) {
 // Store current user scores in array.
-var currentUserScores = req.body.scores;
-
-console.log(`current users score ${currentUserScores}`);
-
-// Determine the user's friend.
-for (var i = 0; i < userData.length; i++) {
-
-  // Convert each user's results in to an array of numbers.
-  var comparisonUserScores = userData[i].scores;
-
-  // Find total difference between current user and each friend in database.
-  comparisonUserTotalScore = calculateUserCompatibilityScore(currentUserScores, comparisonUserScores);
-
-  // Build up array of user compatibility scores.
-  friendScores.push(comparisonUserTotalScore);
-
-}
-
-console.log(`Compatiblity scores array ${friendScores}`);
-
-var index = 0;
-var value = friendScores[0];
-
-// Need to get index of lowest score.
-for (var i = 0; i < friendScores.length; i++) {
-  console.log(`value of current fiend being assessed in array ${friendScores[i]}`);
-  if (friendScores[i] < value) {
-    value = friendScores[i];
-    index = i;
-  }
-}
-
-console.log(`Picked friend with most compatablity to user ${userData[index].name}`);
-
-// Send best friend as a response so we can display in modal.
-res.send(userData[index]);
-
-// Push new user to user array.
-userData.push(req.body);
-
-});
-};
-
-var totalDifference = 0;
-
-// Find total difference between current user and another user.
-function calculateUserCompatibilityScore(currentUserScores, comparisonUserScores) {
-
-// Reset the total difference counter each time function called.
-totalDifference = 0;
-
-for (var i = 0; i < currentUserScores.length; i++) {
-
-totalDifference+=Math.abs(currentUserScores[i] - comparisonUserScores[i]);
-}
-
-console.log("Final total difference for friend: " + totalDifference);
-
-return totalDifference;
-};
+    var user = req.body;
+    var friendName;
+    var friendPic;
+    var friendDiffTotal = 99999
+    //using to for loops to access friends survey scores and compare against users one at a time
+    for (let i = 0; i < friends.length; i++) {
+        var diff = 0;
+        for (let  v= 0; v < friends[i].scores.length; v++) {
+             console.log(`friend ${friends[i].scores[x]}`);
+             console.log(`uSser scores: ${user.scores[x]}`);
+            diff += Math.abs(Number(friends[i].scores[v]-Number(user.scores[v])));
+            console.log(diff);
+        };
+        //assigns new best friend if diff is less then previous
+        if(friendDiffTotal > diff) {
+            friendDiffTotal = diff;
+            friendName = friends[i].name;
+            friendPic = friends[i].photo;
+        }
+    };
+    //respond back to place inside modal
+    res.json({status: 'OK', friendName:friendName, friendPic:friendPic});
+    console.log(req.body);
+    friends.push(req.body);
+    })
+    )};
