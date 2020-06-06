@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Reservation Page</title>
+  <title>Survey Page</title>
 
   <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -135,7 +135,7 @@
                 <option value="4">4</option>
                 <option value="5">5(totally agree)</option>
               </select>
-              <button type="submit" class="btn btn-primary submit">Submit</button>
+              <button type="submit" class="btn btn-primary submit" data-toggle="modal" data-target="#exampleModalCenter">Submit</button>
             </form>
           </div>
         </div>
@@ -150,32 +150,32 @@
       </div>
     </footer>
   </div>
-
-  <div id="resultsModal" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-
-	    <!-- Modal content-->
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h2 class="modal-title"><strong>Best Match</strong></h2>
-	      </div>
-	      <div class="modal-body">
-	        <h2 id="matchName"></h2>
-	        <img id="matchImg" src="No Pic" alt="">
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	      </div>
-	    </div>
-
-	  </div>
+    <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Your New Best Freind!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h2 id="matchName"></h2>
+          <img id="matchImg" src="" alt="no pic for you">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
   </div>
+
+
   
   <script type="text/javascript">
     //this script collects the users answers and compares them to our list of available 
     //friends to find the best match.
-    //var friends = require("../data/friends");
     $(".submit").on("click", function(event) {
         event.preventDefault();
         //console.log(`userscore: ${userScores}`);
@@ -198,8 +198,9 @@
         $.post("/apiroutes",user, function(data){
           if(data) {
             console.log(data.friendName);
+            console.log(data.friendPic);
             $('#matchName').text(data.friendName);
-            $('#matchImg').attr("src",data.friendPic)
+            $('#matchImg').attr("src",String(data.friendPic));
           }
           else{
             console.log("didnt work")

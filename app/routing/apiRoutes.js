@@ -5,10 +5,6 @@ var fs = require('fs');
 //Routing
 module.exports = function(app) {
     // API GET Requests
-    // Below code handles when users "visit" a page.
-    // In each of the below cases when a user visits a link
-    // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table)
-    // ---------------------------------------------------------------------------
   
     app.get("/apiroutes", function(req, res) {
         res.json(friends);
@@ -24,9 +20,9 @@ module.exports = function(app) {
     for (let i = 0; i < friends.length; i++) {
         var diff = 0;
         for (let  v= 0; v < friends[i].scores.length; v++) {
-             console.log(`friend ${friends[i].scores[x]}`);
-             console.log(`uSser scores: ${user.scores[x]}`);
-            diff += Math.abs(Number(friends[i].scores[v]-Number(user.scores[v])));
+             console.log(`friend ${friends[i].scores[v]}`);
+             console.log(`uSser scores: ${user.scores[v]}`);
+            diff += Math.abs(Number(friends[i].scores[v])-Number(user.scores[v]));
             console.log(diff);
         };
         //assigns new best friend if diff is less then previous
@@ -38,6 +34,7 @@ module.exports = function(app) {
     };
     //respond back to place inside modal
     res.json({status: 'OK', friendName:friendName, friendPic:friendPic});
+    //push new friend to db.
     console.log(req.body);
     friends.push(req.body);
     })

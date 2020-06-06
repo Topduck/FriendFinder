@@ -1,21 +1,21 @@
 var friends = [{
-    "name":"Ahmed",
-    "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    "name":"Malcolm",
+    "photo":"https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/90077347-b7c3-4a62-89bf-3dab86f236a6/d5lo3qn-b965371f-1ad1-46b1-831c-cc639a2617f4.jpg/v1/fill/w_556,h_800,q_75,strp/malcolm_reynolds_by_dsillustration_d5lo3qn-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3siaGVpZ2h0IjoiPD04MDAiLCJwYXRoIjoiXC9mXC85MDA3NzM0Ny1iN2MzLTRhNjItODliZi0zZGFiODZmMjM2YTZcL2Q1bG8zcW4tYjk2NTM3MWYtMWFkMS00NmIxLTgzMWMtY2M2MzlhMjYxN2Y0LmpwZyIsIndpZHRoIjoiPD01NTYifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.ecXBnXwgi7IyuRRb0kRX7MIgC_PoooyKjw2XUGF4D58",
     "scores":[5,1,4,4,5,1,2,5,4,1]
   },
   {
-    "name":"Todd",
-    "photo":"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+    "name":"Andy",
+    "photo":"https://uproxx.com/wp-content/uploads/2020/02/andy-dwyer.jpg?w=1600&h=660&crop=1",
     "scores":[3,4,3,1,5,3,5,4,3,2]
   },
   {
-    "name":"Beth",
-    "photo":"https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "name":"Chris",
+    "photo":"https://i.pinimg.com/originals/da/85/1a/da851a7d3fbc64e514db6c76587cfbf5.jpg",
     "scores":[4,4,4,2,3,3,4,2,1,5]
   },
   {
     "name":"Ron",
-    "photo":"https://i.chzbgr.com/full/9327633408/hB844F8AB/ron-swanson-meme-about-big-ben-the-clocktower-in-london",
+    "photo":"https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/RonSwanson.jpg/250px-RonSwanson.jpg",
     "scores":[5,5,5,5,5,5,5,5,5,5]
   },
   {
@@ -24,3 +24,5 @@ var friends = [{
     "scores":[1,1,1,1,1,1,1,1,1,1]
   }
 ]
+
+module.exports = friends
